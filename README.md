@@ -64,7 +64,7 @@ Then in the monitored application, get the `widget_gauge` value above 30 for 1 m
 A notification will be sent out targeting the Database group:
 
 <kbd>
-	<img src="media/notification.png">
+	<img src="media/notification.png" width="600">
 </kbd>
 
 
