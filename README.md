@@ -11,7 +11,7 @@
 * [Prometheus.zip](Prometheus.zip) - Comm Plan for the integration builder script and notification form templates. 
 
 # How it works
-[Alert rules](https://prometheus.io/docs/alerting/rules/) are defined in Prometheus and sent to AlertManager for further processing. The AlertManager [config file](https://prometheus.io/docs/alerting/configuration/#configuration-file) defines what happens after the alerts are sent to AlertManager. Using the xMatters notifier, an inbound integration endpoint can be defined and tied to a receiver, which can then be referenced by a route. Once the alert reaches xMatters, the integration builder script transforms the content and builds the event, sets the recipient to the receiver and creates the event. 
+[Alert rules](https://prometheus.io/docs/alerting/rules/) are defined in Prometheus and sent to AlertManager for further processing. The AlertManager [config file](https://prometheus.io/docs/alerting/configuration/#configuration-file) defines what happens after the alerts are sent to AlertManager. A webhook points to an inbound integration endpoint and tied to a [`receiver`](https://prometheus.io/docs/alerting/configuration/#<receiver>), which can then be referenced by a [`route`](https://prometheus.io/docs/alerting/configuration/#<route>). Once the alert reaches xMatters, the integration builder script transforms the content and builds the event, sets the recipient to the receiver and creates the event. 
 
 # Installation
 
@@ -23,13 +23,12 @@
 
 ## Prometheus set up
 1. Open the `alertmanager.yml` file and navigate to the `receivers` section. The location of the file and the section will depend on the details of the installation. 
-2. Add a new receiver. The name of the receiver will be the recipients of the event. An optional `priority` field can be passed to indicate `high`, `medium`, or `low` priority. For example, to target the `Database` group:
+2. Add a new receiver. The name of the receiver will be the recipients of the event. For example, to target the `Database` group:
 
 ```yaml
 - name: 'Database'
-  xmatters_configs:
+  webhook_configs:
     - url: 'https://acme.xmatters.com/api/integration/1/functions/UUID/triggers?apiKey=KEY'
-      priority: 'high'
 ```
 
 3. Edit the route that should target the new receiver. For example, to notifiy this `Database` receiver for the `octoapp` service:
