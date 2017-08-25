@@ -42,6 +42,29 @@
 
 4. Repeat as needed for new routes and new receivers. 
 
+5. Edit any alert rules (referenced in the file(s) defined in the `rule_files` section of the `prometheus.yml` file) to include a priority annotation, or to include any additional fields required for processing. For example:
+
+```
+ALERT octo_alert
+  IF some_gauge > 30
+  FOR 1m
+  LABELS { 
+    severity = "page_octo",
+    service  = "octoapp"
+  }
+  ANNOTATIONS {
+     summary = "The summary goes here",
+     description = "The description goes here",
+     priority    = "high",
+     other_field = "other value"
+  }
+```
+
+   The fields inside the `ANNOTATIONS` section can then be referenced in the integration builder like so:
+```javascript
+var other_field = data.commonAnnotations.other_field;
+```
+
 # Testing
 Create or edit an Alert Rule in the alert rules file (defined in the `prometheus.yml` file) that is easy to fire. For example, to fire when the `widget_gauge` is greater than 30 for 1 minute:
 
