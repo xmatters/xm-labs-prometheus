@@ -1,6 +1,8 @@
 # Prometheus AlertManager
 [Prometheus](https://prometheus.io/) is a powerful, open-source monitoring solution. This integration to xMatters extends the alerting capabilities of AlertManager to notify the right people at the right time. 
 
+[![Prometheus video](https://img.youtube.com/vi/cBP7w_NhkBA/0.jpg)](https://youtu.be/cBP7w_NhkBA)
+
 
 # Pre-Requisites
 * Prometheus with [AlertManager](https://github.com/prometheus/alertmanager) set up and running. 
