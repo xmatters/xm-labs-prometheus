@@ -3,6 +3,14 @@
 
 [![Prometheus video](https://img.youtube.com/vi/cBP7w_NhkBA/0.jpg)](https://youtu.be/cBP7w_NhkBA)
 
+---------
+
+<kbd>
+  <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+</kbd>
+
+---------
+
 
 # Pre-Requisites
 * Prometheus with [AlertManager](https://github.com/prometheus/alertmanager) set up and running. 
