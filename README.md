@@ -26,9 +26,14 @@
 # Installation
 
 ## xMatters set up
-1. Import the [Prometheus.zip](Prometheus.zip) comm plan. 
+1. Login to the xMatters UI and navigate to the Developer tab. 
+2. Click the Import Comm Plan and point to the [Prometheus.zip](Prometheus.zip) file. 
 2. Click Edit > Integration Builder and expand the Inbound Integrations section. 
-3. Click on the `Inbound from Prometheus` link and copy the endpoint at the bottom of the page. Save for later. 
+3. Click on the `Inbound from Prometheus` link and scroll down to see the **How to trigger the integration** section. Selecting an authentication scheme will show the URL value. Copy this and save for later.
+
+<kbd>
+	<img src="/media/inboundUrl.png" width="550">
+</kbd>
 
 
 ## Prometheus set up
