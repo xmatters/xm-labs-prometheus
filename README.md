@@ -6,7 +6,9 @@
 ---------
 
 <kbd>
-  <img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+<a href="https://support.xmatters.com/hc/en-us/community/topics">	
+	<img src="https://github.com/xmatters/xMatters-Labs/raw/master/media/disclaimer.png">
+</a>	
 </kbd>
 
 ---------
@@ -18,7 +20,7 @@
 * xMatters account - If you don't have one, [get one](https://www.xmatters.com)!
 
 # Files
-* [Prometheus.zip](Prometheus.zip) - Comm Plan for the integration builder script and notification form templates. 
+* [Prometheus.zip](Prometheus.zip) - Workflow for the integration builder script and notification form templates. 
 
 # How it works
 [Alert rules](https://prometheus.io/docs/alerting/rules/) are defined in Prometheus and sent to AlertManager for further processing. The AlertManager [config file](https://prometheus.io/docs/alerting/configuration/#configuration-file) defines what happens after the alerts are sent to AlertManager. A webhook points to an inbound integration endpoint and tied to a [`receiver`](https://prometheus.io/docs/alerting/configuration/#<receiver>), which can then be referenced by a [`route`](https://prometheus.io/docs/alerting/configuration/#<route>). Once the alert reaches xMatters, the integration builder script transforms the content and builds the event, sets the recipient to the receiver and creates the event. 
@@ -26,8 +28,8 @@
 # Installation
 
 ## xMatters set up
-1. Login to the xMatters UI and navigate to the Developer tab. 
-2. Click the Import Comm Plan and point to the [Prometheus.zip](Prometheus.zip) file. 
+1. Login to the xMatters UI and navigate to the Workflows page. 
+2. Click the Import Workflow and point to the [Prometheus.zip](Prometheus.zip) file. 
 2. Click Edit > Integration Builder and expand the Inbound Integrations section. 
 3. Click on the `Inbound from Prometheus` link and scroll down to see the **How to trigger the integration** section. Selecting an authentication scheme will show the URL value. Copy this and save for later.
 
