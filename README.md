@@ -103,4 +103,10 @@ TODO: new image here
 # Troubleshooting
 Check the AlertManager log (This depends on installation details) for any errors making the call to xMatters. Then check the Activity Stream in the `Inbound from Prometheus` section for errors. 
 
+## Example
+This is the example flow provided in the [Prometheus.zip](Prometheus.zip) Workflow file.
+
 TODO: add example workflow image here
+<kbd>
+	<img src="/media/ExampleFlow.png">
+</kbd>
