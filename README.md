@@ -23,19 +23,13 @@
 * [Prometheus.zip](Prometheus.zip) - Workflow for the integration builder script and notification form templates. 
 
 # How it works
-[Alert rules](https://prometheus.io/docs/alerting/rules/) are defined in Prometheus and sent to AlertManager for further processing. The AlertManager [config file](https://prometheus.io/docs/alerting/configuration/#configuration-file) defines what happens after the alerts are sent to AlertManager. A webhook points to an inbound integration endpoint and tied to a [`receiver`](https://prometheus.io/docs/alerting/configuration/#<receiver>), which can then be referenced by a [`route`](https://prometheus.io/docs/alerting/configuration/#<route>). Once the alert reaches xMatters, the integration builder script transforms the content and builds the event, sets the recipient to the receiver and creates the event. 
+[Alerting rules](https://prometheus.io/docs/prometheus/latest/configuration/alerting_rules/) are defined in Prometheus and sent to AlertManager for further processing. The AlertManager [config file](https://prometheus.io/docs/alerting/configuration/#configuration-file) defines what happens after the alerts are sent to AlertManager. A webhook points to an HTTP trigger in xMatters. Once the alert reaches xMatters, the integration builder script transforms the content and builds the event, sets the recipient to the receiver and creates the event. 
 
 # Installation
 
 ## xMatters set up
 1. Login to the xMatters UI and navigate to the Workflows page. 
-2. Click the Import Workflow and point to the [Prometheus.zip](Prometheus.zip) file. 
-2. Click Edit > Integration Builder and expand the Inbound Integrations section. 
-3. Click on the `Inbound from Prometheus` link and scroll down to see the **How to trigger the integration** section. Selecting an authentication scheme will show the URL value. Copy this and save for later.
-
-<kbd>
-	<img src="/media/inboundUrl.png" width="550">
-</kbd>
+2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
 
 
 ## Prometheus set up
@@ -62,52 +56,51 @@
 5. Edit any alert rules (referenced in the file(s) defined in the `rule_files` section of the `prometheus.yml` file) to include a priority annotation, or to include any additional fields required for processing. For example:
 
 ```
-ALERT octo_alert
-  IF some_gauge > 30
-  FOR 1m
-  LABELS { 
-    severity = "page_octo",
-    service  = "octoapp"
-  }
-  ANNOTATIONS {
-     summary = "The summary goes here",
-     description = "The description goes here",
-     priority    = "high",
-     other_field = "other value"
-  }
+groups:
+- name: alert.rules
+  rules:
+  - alert: octo_alert
+    expr: some_gauge > 30
+    for: 20s
+    labels:
+      service: octoapp
+      severity: page_octo
+    annotations:
+      description: The description goes here
+      summary: The summary goes here
 ```
 
-   The fields inside the `ANNOTATIONS` section can then be referenced in the integration builder like so:
-```javascript
-var other_field = data.commonAnnotations.other_field;
-```
+   The fields inside the `ANNOTATIONS` section are put inside the `annotation_contents` output.
 
 # Testing
 Create or edit an Alert Rule in the alert rules file (defined in the `prometheus.yml` file) that is easy to fire. For example, to fire when the `widget_gauge` is greater than 30 for 1 minute:
 
 ```
-ALERT octo_alert
-  IF widget_gauge > 30
-  FOR 1m
-  LABELS { 
-    service  = "octoapp"
-  }
-  ANNOTATIONS {
-     summary = "The summary goes here",
-     description = "The description goes here"
-  }
+groups:
+- name: alert.rules
+  rules:
+  - alert: octo_alert
+    expr: some_gauge > 30
+    for: 20s
+    labels:
+      service: octoapp
+      severity: page_octo
+    annotations:
+      description: The description goes here
+      summary: The summary goes here
 ```
 
-Then in the monitored application, get the `widget_gauge` value above 30 for 1 minute. This will trigger an alert in AlertManager, and then will be fired off to xMatters. Make sure you have a `Database` group with a user. 
+Then in the monitored application, get the `some_gauge` value above 30 for 1 minute. This will trigger an alert in AlertManager, and then will be fired off to xMatters. Make sure you have a `Database` group with a user. 
 
 A notification will be sent out targeting the Database group:
 
+TODO: new image here
 <kbd>
 	<img src="media/notification.png" width="600">
 </kbd>
 
 
-
 # Troubleshooting
-Check the AlertManager log (probably in `/var/log/prometheus`, but will depend on the installation details) for any errors making the call to xMatters. Then check the Activity Stream in the `Inbound from Prometheus` script for errors. 
+Check the AlertManager log (This depends on installation details) for any errors making the call to xMatters. Then check the Activity Stream in the `Inbound from Prometheus` section for errors. 
 
+TODO: add example workflow image here
