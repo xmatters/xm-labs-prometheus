@@ -31,7 +31,8 @@
 1. Login to the xMatters UI and navigate to the Workflows page. 
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
 3. Update the Alert Manager Endpoint to the address of your alertmanager, `example.com:9093/api/v2/`
-4. Fill out the `xMatters Create Event - New Alert` step with the users that should be notified.
+4. Fill out the **xMatters Create Event - New Alert** step with the users that should be notified.
+5. Update the values in the **Create Silence** and **Delete Silence** steps
 
 
 
@@ -108,7 +109,6 @@ Check the AlertManager log (This depends on installation details) for any errors
 ## Example
 This is the example flow provided in the [Prometheus.zip](Prometheus.zip) Workflow file.
 
-TODO: add example workflow image here
 <kbd>
 	<img src="/media/ExampleFlow.png">
 </kbd>
