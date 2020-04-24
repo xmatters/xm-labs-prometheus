@@ -31,6 +31,8 @@
 1. Login to the xMatters UI and navigate to the Workflows page. 
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
 3. Update the Alert Manager Endpoint to the address of your alertmanager, `example.com:9093/api/v2/`
+4. Fill out the `xMatters Create Event - New Alert` step with the users that should be notified.
+
 
 
 ## Prometheus set up
@@ -95,7 +97,6 @@ Then in the monitored application, get the `some_gauge` value above 30 for 1 min
 
 A notification will be sent out targeting the Database group:
 
-TODO: new image here
 <kbd>
 	<img src="media/notification.png" width="600">
 </kbd>
