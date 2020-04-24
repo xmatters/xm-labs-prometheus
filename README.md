@@ -30,6 +30,7 @@
 ## xMatters set up
 1. Login to the xMatters UI and navigate to the Workflows page. 
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
+3. Update the Alert Manager Endpoint to the address of your alertmanager, `example.com:9093/api/v2/`
 
 
 ## Prometheus set up
