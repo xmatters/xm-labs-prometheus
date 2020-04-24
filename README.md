@@ -30,9 +30,8 @@
 ## xMatters set up
 1. Login to the xMatters UI and navigate to the Workflows page. 
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
-3. Update the Alert Manager Endpoint to the address of your alertmanager, `example.com:9093/api/v2/`
-4. Fill out the **xMatters Create Event - New Alert** step with the users that should be notified.
-5. Update the values in the **Create Silence** and **Delete Silence** steps
+3. Update the Alert Manager Endpoint to the address of your alertmanager, i.e. `localhost:9093/api/v2/`
+4. Update the values as needed in the **Create Silence** and **Delete Silence** steps
 
 
 
@@ -72,9 +71,12 @@ groups:
     annotations:
       description: The description goes here
       summary: The summary goes here
+      recipient: bob
 ```
 
    The fields inside the `ANNOTATIONS` section are put inside the `annotation_contents` output.
+   
+   **Include an annotation called recipient for xMatters to know who to alert**
 
 # Testing
 Create or edit an Alert Rule in the alert rules file (defined in the `prometheus.yml` file) that is easy to fire. For example, to fire when the `widget_gauge` is greater than 30 for 1 minute:
@@ -92,6 +94,7 @@ groups:
     annotations:
       description: The description goes here
       summary: The summary goes here
+      recipient: bob
 ```
 
 Then in the monitored application, get the `some_gauge` value above 30 for 1 minute. This will trigger an alert in AlertManager, and then will be fired off to xMatters. Make sure you have a `Database` group with a user. 
@@ -105,6 +108,8 @@ A notification will be sent out targeting the Database group:
 
 # Troubleshooting
 Check the AlertManager log (This depends on installation details) for any errors making the call to xMatters. Then check the Activity Stream in the `Inbound from Prometheus` section for errors. 
+
+Make sure a recipient annotation is set in the alert rule that is triggered.
 
 ## Example
 This is the example flow provided in the [Prometheus.zip](Prometheus.zip) Workflow file.
