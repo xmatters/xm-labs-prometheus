@@ -37,7 +37,7 @@
 
 ## Prometheus set up
 1. Open the `alertmanager.yml` file and navigate to the `receivers` section. The location of the file and the section will depend on the details of the installation. 
-2. Add a new receiver. The name of the receiver will be the recipients of the event. For example, to target the `Database` group:
+2. Add a new receiver. The name of the receiver will be the recipients of the event. The webhook url is found in the **Inbound from Alertmanager** step in your xMatters workflow. For example, to target the `Database` group:
 
 ```yaml
 - name: 'Database'
@@ -110,6 +110,8 @@ A notification will be sent out targeting the Database group:
 Check the AlertManager log (This depends on installation details) for any errors making the call to xMatters. Then check the Activity Stream in the `Inbound from Prometheus` section for errors. 
 
 Make sure a recipient annotation is set in the alert rule that is triggered.
+
+Check that the HTTP trigger in xMatters is associated with the receiver in your `alertmanager.yml` file.
 
 ## Example
 This is the example flow provided in the [Prometheus.zip](Prometheus.zip) Workflow file.
