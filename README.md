@@ -31,7 +31,6 @@
 1. Login to the xMatters UI and navigate to the Workflows page. 
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
 3. Update the Alert Manager Endpoint to the address of your alertmanager, i.e. `localhost:9093/api/v2/`
-4. Update the values as needed in the **Create Silence** and **Delete Silence** steps
 
 
 
