@@ -33,6 +33,7 @@
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
 3. Update the Alert Manager Endpoint to the address of your alertmanager, i.e. `http://localhost:9093/api/v2/`
 4. Edit the Run Location for the two silence steps to point to an agent, or the open port for AlertManager. 
+
 Steps:
 
 <kbd>
@@ -42,7 +43,7 @@ Steps:
 Run Location:
 
 <kbd>
-	<img src="media/select-run-location.png" width="350">
+	<img src="media/select-run-location.png" width="500">
 </kbd>
 
 
