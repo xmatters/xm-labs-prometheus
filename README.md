@@ -18,6 +18,7 @@
 * Prometheus with [AlertManager](https://github.com/prometheus/alertmanager) set up and running. 
 * An application to monitor
 * xMatters account - If you don't have one, [get one](https://www.xmatters.com)!
+* An [xMatters Agent](https://help.xmatters.com/ondemand/xmodwelcome/xmattersagent/xmatters-agent-topic.htm) or an open port to AlertManager that xMatters can access from the cloud. 
 
 # Files
 * [Prometheus.zip](Prometheus.zip) - Workflow for the integration builder script and notification form templates. 
@@ -30,8 +31,15 @@
 ## xMatters set up
 1. Login to the xMatters UI and navigate to the Workflows page. 
 2. Click the Import Workflow and select the [Prometheus.zip](Prometheus.zip) file. 
-3. Update the Alert Manager Endpoint to the address of your alertmanager, i.e. `localhost:9093/api/v2/`
+3. Update the Alert Manager Endpoint to the address of your alertmanager, i.e. `http://localhost:9093/api/v2/`
+4. Edit the Run Location for the two silence steps to point to an agent, or the open port for AlertManager. 
+<kbd>
+	<img src="media/silences.png">
+</kbd>
 
+<kbd>
+	<img src="media/select-run-location.png">
+</kbd>
 
 
 ## Prometheus set up
