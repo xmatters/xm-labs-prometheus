@@ -56,6 +56,7 @@ Run Location:
   webhook_configs:
     - url: 'https://acme.xmatters.com/api/integration/1/functions/UUID/triggers?apiKey=KEY'
 ```
+Note: By storing the API Key in the URL it is visible in the UI. If you would like to keep the API Key out of the UI, use http_config and basic authentication to connect with xMatters.
 
 3. Edit the route that should target the new receiver. For example, to notifiy this `Database` receiver for the `octoapp` service:
 
