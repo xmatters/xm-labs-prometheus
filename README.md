@@ -13,6 +13,9 @@
 
 ---------
 
+An updated version of this integration is available. You can install the new one-way version right from the Workflow Templates directory within your xMatters instance. [Learn more](https://help.xmatters.com/integrations/#cshid=PrometheusAlertmanager).
+
+---------
 
 # Pre-Requisites
 * Prometheus with [AlertManager](https://github.com/prometheus/alertmanager) set up and running. 
